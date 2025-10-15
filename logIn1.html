@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dota 2 - Login</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="dota-logo">
+      <h1>Dota 2</h1>
+    </div>
+    
+    <div class="login-container">
+      <h2>Login</h2>
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="Enter your email" required />
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" placeholder="Enter your password" required />
+        </div>
+
+        <button type="submit">Login</button>
+      </form>
+      <div class="form-footer">
+        <p>Don't have an account? <a href="register1.html">Register here</a></p>
+        <button id="goBackToPortfolio" class="logout-btn">Go back to the portfolio</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Mobile menu toggle
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+    
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navMenu.classList.toggle('active');
+    });
+
+    // Login form handler
+    document.getElementById("loginForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      const storedUser = localStorage.getItem(email);
+
+      if (storedUser) {
+        const user = JSON.parse(storedUser);
+        if (user.password === password) {
+          alert("Login successful!");
+          sessionStorage.setItem("loggedInUser", email);
+          window.location.href = "table1.html";
+        } else {
+          alert("Incorrect password!");
+        }
+      } else {
+        alert("No user found with that email. Please register first.");
+      }
+    });
+
+    document.getElementById("goBackToPortfolio").addEventListener("click", () => {
+      sessionStorage.removeItem("loggedInUser");
+      window.location.href = "C:\\Users\\User\\Desktop\\new portfolio\\home.html";
+    });
+
+  </script>
+</body>
+</html>

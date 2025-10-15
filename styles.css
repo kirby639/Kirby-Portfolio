@@ -1,0 +1,308 @@
+/* Dota 2 Theme Styles */
+:root {
+  --dota-red: #900000;
+  --dota-dark: #0d0d0d;
+  --dota-gold: #cdb46c;
+  --dota-light: #1a1a1a;
+  --dota-text: #e0e0e0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Radiance', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background: linear-gradient(rgba(13, 13, 13, 0.9), rgba(13, 13, 13, 0.9)), 
+              url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/c6ac5f1c-3753-4596-97c6-3d9e7b5e3b7c/dg9r0qy-1c9c5a2b-7b5f-4b0d-9c0c-2a2a2a2a2a2a.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2M2YWM1ZjFjLTM3NTMtNDU5Ni05N2M2LTNkOWU3YjVlM2I3Y1wvZGc5cjBxeS0xYzljNWEyYi03YjVmLTRiMGQtOWMwYy0yYTJhMmEyYTJhMmEuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.9QJ0Y9QJ0Y9QJ0Y9QJ0Y9QJ0Y9QJ0Y9QJ0Y9QJ0Y9QJ0') no-repeat center center fixed;
+  background-size: cover;
+  color: var(--dota-text);
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Navigation */
+.navbar {
+  background-color: var(--dota-dark);
+  padding: 15px 0;
+  border-bottom: 2px solid var(--dota-gold);
+  margin-bottom: 30px;
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.nav-logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--dota-gold);
+  text-decoration: none;
+}
+
+.nav-menu {
+  display: flex;
+  list-style: none;
+}
+
+.nav-menu li {
+  margin-left: 25px;
+}
+
+.nav-menu a {
+  color: var(--dota-text);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+  padding: 5px 10px;
+  border-radius: 3px;
+}
+
+.nav-menu a:hover,
+.nav-menu a.active {
+  color: var(--dota-gold);
+  background-color: rgba(205, 180, 108, 0.1);
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background-color: var(--dota-text);
+  margin: 3px 0;
+  transition: 0.3s;
+}
+
+/* Login/Register Forms */
+.login-container, .register-container {
+  background-color: var(--dota-light);
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(144, 0, 0, 0.5);
+  border: 1px solid var(--dota-gold);
+}
+
+.login-container h2, .register-container h2 {
+  text-align: center;
+  color: var(--dota-gold);
+  margin-bottom: 25px;
+  font-size: 28px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--dota-text);
+  font-weight: 500;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 12px 15px;
+  background-color: rgba(13, 13, 13, 0.7);
+  border: 1px solid #444;
+  border-radius: 4px;
+  color: var(--dota-text);
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+  outline: none;
+  border-color: var(--dota-gold);
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  background-color: var(--dota-red);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+button:hover {
+  background-color: #a00000;
+}
+
+.form-footer {
+  text-align: center;
+  margin-top: 20px;
+  color: var(--dota-text);
+}
+
+.form-footer a {
+  color: var(--dota-gold);
+  text-decoration: none;
+}
+
+.form-footer a:hover {
+  text-decoration: underline;
+}
+
+/* Table Page */
+.table-container {
+  background-color: var(--dota-light);
+  border-radius: 8px;
+  padding: 30px;
+  box-shadow: 0 0 20px rgba(144, 0, 0, 0.5);
+  border: 1px solid var(--dota-gold);
+}
+
+.welcome-message {
+  text-align: center;
+  color: var(--dota-gold);
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.data-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr auto;
+  gap: 15px;
+  margin-bottom: 30px;
+  background-color: rgba(13, 13, 13, 0.7);
+  padding: 20px;
+  border-radius: 6px;
+}
+
+.data-form .form-group {
+  margin-bottom: 0;
+}
+
+.data-form button {
+  height: fit-content;
+  align-self: end;
+}
+
+/* Dota 2 Items Table */
+.items-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: rgba(13, 13, 13, 0.7);
+}
+
+.items-table th {
+  background-color: var(--dota-red);
+  color: white;
+  padding: 12px 15px;
+  text-align: left;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.items-table td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #444;
+}
+
+.items-table tr:hover {
+  background-color: rgba(144, 0, 0, 0.1);
+}
+
+.item-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+.logout-btn {
+  width: auto;
+  padding: 10px 20px;
+  margin-top: 20px;
+  background-color: transparent;
+  border: 1px solid var(--dota-red);
+  color: var(--dota-text);
+}
+
+.logout-btn:hover {
+  background-color: var(--dota-red);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+  
+  .nav-menu {
+    position: fixed;
+    left: -100%;
+    top: 70px;
+    flex-direction: column;
+    background-color: var(--dota-dark);
+    width: 100%;
+    text-align: center;
+    transition: 0.3s;
+    box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+    z-index: 1000;
+  }
+  
+  .nav-menu.active {
+    left: 0;
+  }
+  
+  .nav-menu li {
+    margin: 15px 0;
+  }
+  
+  .data-form {
+    grid-template-columns: 1fr;
+  }
+  
+  .items-table {
+    display: block;
+    overflow-x: auto;
+  }
+}
+
+/* Dota 2 Logo Style */
+.dota-logo {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.dota-logo h1 {
+  color: var(--dota-gold);
+  font-size: 36px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  text-shadow: 0 0 10px rgba(205, 180, 108, 0.5);
+}

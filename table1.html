@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dota 2 - Items Database</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="table-container">
+      <div class="dota-logo">
+        <h1>Dota 2 Items</h1>
+      </div>
+      
+      <div class="welcome-message" id="welcome"></div>
+      
+      <h3>Add New Item</h3>
+      <form id="dataForm" class="data-form">
+        <div class="form-group">
+          <label for="itemName">Item Name</label>
+          <input type="text" id="itemName" placeholder="Item Name" required />
+        </div>
+        
+        <div class="form-group">
+          <label for="itemCost">Cost (Gold)</label>
+          <input type="number" id="itemCost" placeholder="Cost" required />
+        </div>
+        
+        <div class="form-group">
+          <label for="itemDescription">Description</label>
+          <input type="text" id="itemDescription" placeholder="Description" required />
+        </div>
+        
+        <button type="submit">Add Item</button>
+      </form>
+      
+      <h3>Dota 2 Items Database</h3>
+      <table class="items-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Item Name</th>
+            <th>Cost</th>
+            <th>Description</th>
+            <th>Attributes</th>
+          </tr>
+        </thead>
+        <tbody id="itemsTableBody">
+          <!-- Items will be populated here -->
+        </tbody>
+      </table>
+      
+      <button id="logout" class="logout-btn">Logout</button>
+    </div>
+  </div>
+
+  <script>
+    // Mobile menu toggle
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+    
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navMenu.classList.toggle('active');
+    });
+
+    // Check if user is logged in
+    const userEmail = sessionStorage.getItem("loggedInUser");
+
+    if (!userEmail) {
+      alert("You must log in first!");
+      window.location.href = "login1.html";
+    } else {
+      const user = JSON.parse(localStorage.getItem(userEmail));
+      document.getElementById("welcome").textContent = `Welcome to Dota 2 Items Database, ${user.fullName}!`;
+    }
+
+    // Initialize default Dota 2 items if not exists
+    if (!localStorage.getItem('dota2Items')) {
+      const defaultItems = [
+        { id: 1, name: "Blink Dagger", cost: 2250, description: "Teleport to a target point up to 1200 units away.", attributes: "Active: Blink" },
+        { id: 2, name: "Black King Bar", cost: 4050, description: "Grants spell immunity and 50% magic resistance.", attributes: "Active: Avatar" },
+        { id: 3, name: "Aghanim's Scepter", cost: 4200, description: "Upgrades your hero's ultimate ability.", attributes: "Passive: Ultimate Upgrade" },
+        { id: 4, name: "Divine Rapier", cost: 5950, description: "Grants 350 damage. Drops on death.", attributes: "+350 Damage" },
+        { id: 5, name: "Heart of Tarrasque", cost: 5000, description: "Provides massive health and health regeneration.", attributes: "+500 HP, +40 Strength" }
+      ];
+      localStorage.setItem('dota2Items', JSON.stringify(defaultItems));
+    }
+
+    // Load items from localStorage
+    function loadItems() {
+      const items = JSON.parse(localStorage.getItem('dota2Items'));
+      const tableBody = document.getElementById("itemsTableBody");
+      tableBody.innerHTML = '';
+      
+      items.forEach(item => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${item.id}</td>
+          <td>${item.name}</td>
+          <td>${item.cost}</td>
+          <td>${item.description}</td>
+          <td>${item.attributes}</td>
+        `;
+        tableBody.appendChild(row);
+      });
+    }
+
+    // Add new item
+    document.getElementById("dataForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById("itemName").value;
+      const cost = document.getElementById("itemCost").value;
+      const description = document.getElementById("itemDescription").value;
+      const attributes = "Custom Item";
+
+      // Get existing items
+      const items = JSON.parse(localStorage.getItem('dota2Items'));
+      const newId = items.length > 0 ? Math.max(...items.map(item => item.id)) + 1 : 1;
+      
+      // Add new item
+      items.push({
+        id: newId,
+        name,
+        cost: parseInt(cost),
+        description,
+        attributes
+      });
+      
+      // Save back to localStorage
+      localStorage.setItem('dota2Items', JSON.stringify(items));
+      
+      // Reload table
+      loadItems();
+      
+      // Reset form
+      document.getElementById("dataForm").reset();
+    });
+
+    // Logout functionality
+    document.getElementById("logout").addEventListener("click", () => {
+      sessionStorage.removeItem("loggedInUser");
+      window.location.href = "login1.html";
+    });
+
+    // Initial load
+    loadItems();
+  </script>
+</body>
+</html>
