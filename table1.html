@@ -80,7 +80,7 @@
 
     if (!userEmail) {
       alert("You must log in first!");
-      window.location.href = "login1.html";
+      window.location.href = "logln1.html";
     } else {
       const user = JSON.parse(localStorage.getItem(userEmail));
       document.getElementById("welcome").textContent = `Welcome to Dota 2 Items Database, ${user.fullName}!`;
@@ -152,11 +152,12 @@
     // Logout functionality
     document.getElementById("logout").addEventListener("click", () => {
       sessionStorage.removeItem("loggedInUser");
-      window.location.href = "login1.html";
+      window.location.href = "logln1.html";
     });
 
     // Initial load
     loadItems();
   </script>
 </body>
+
 </html>
